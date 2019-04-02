@@ -1,0 +1,9 @@
+{
+  "name": "notes-app",
+  "version": "",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "validator": "^10.8.0",
+    "yargs": "^12.0.2"
+  }
+}

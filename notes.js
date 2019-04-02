@@ -1,6 +1,38 @@
+const fs = require('fs')
 
-const chumma = () => {
+const getnotes = () => {
     return  "Your notes..."
 }
 
-module.exports = chumma
+const addNote = (title, body) => {
+    const notes = loadNotes()
+    notes.push({
+        title: title,
+        body: body
+    })
+
+    saveNotes(notes)
+}
+
+const saveNotes = (notes) => {
+    const dataJSON = JSON.stringify(notes)
+    fs.writeFileSync('notes.json', dataJSON)
+}
+const loadNotes = () => {
+    try{
+        const dataBuffer = fs.readFileSync('notes.json')
+        const dataJSON = dataBuffer.toString()
+        return JSON.parse(dataJSON)
+
+    } catch(error) {
+        //No data in notes.json or notes.json does not exist. 
+        return []
+    }
+   
+}
+
+module.exports = {
+    getnotes, addNote
+}
+
+
